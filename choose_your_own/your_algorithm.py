@@ -24,7 +24,7 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+#plt.show()
 ################################################################################
 
 
@@ -32,6 +32,17 @@ plt.show()
 ### visualization code (prettyPicture) to show you the decision boundary
 
 
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+
+
+#clf = KNeighborsClassifier(n_neighbors=25)
+clf = RandomForestClassifier(min_samples_split=2)
+clf.fit(features_train, labels_train)
+
+pred = clf.predict(features_test)
+print accuracy_score(labels_test, pred)
 
 
 
@@ -40,5 +51,6 @@ plt.show()
 
 try:
     prettyPicture(clf, features_test, labels_test)
+    print "completed pretty picture"
 except NameError:
     pass
